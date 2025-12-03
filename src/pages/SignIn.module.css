@@ -1,0 +1,23 @@
+.container {
+  background-color: #f7f8f8;
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.formBox {
+  background-color: #fff;
+  width: 470px;
+  height: 600px;
+  border-radius: 40px;
+  border: 1px solid #e4e4e4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px;
+}
+.formBox img {
+  margin-bottom: 15px;
+}
