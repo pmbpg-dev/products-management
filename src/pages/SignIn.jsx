@@ -27,6 +27,7 @@ function SignIn() {
   }, []);
   //=====================submit event====================
   const { mutate, isPending } = useMutation({
+    mutationKey: ["login"],
     mutationFn: fetchLogin,
     onSuccess: (res) => {
       Cookies.set("token", res.data.token, { expires: 7 });

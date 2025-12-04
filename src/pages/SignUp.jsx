@@ -28,6 +28,7 @@ function SignUp() {
   }, []);
   //=====================submit event====================
   const { mutate } = useMutation({
+    mutationKey: ["register"],
     mutationFn: fetchRegister,
     onSuccess: async (res) => {
       await toast.success("حساب کاربری ایجاد شد", {

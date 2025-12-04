@@ -10,3 +10,6 @@ body {
   background-color: #f7f8f8;
   overflow-x: hidden;
 }
+button {
+  cursor: pointer;
+}

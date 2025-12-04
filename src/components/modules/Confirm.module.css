@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #3333337d;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box {
+  @apply bg-[#fff] w-[472px] h-[338px] rounded-[30px] flex flex-col justify-evenly items-center;
+}
+.delete {
+  @apply bg-[#F43F5E] w-[160px] h-[41px] p-[10px] text-[#fff] rounded-[10px];
+}
+
+.cancel {
+  @apply bg-[#DFDFDF] w-[160px] h-[41px] p-[10px] rounded-[10px];
+}

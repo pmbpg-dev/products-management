@@ -7,3 +7,6 @@ export const fetchLogin = async (object) =>
   await api.post("auth/login", object);
 export const fetchRegister = async (object) =>
   await api.post("auth/register", object);
+
+export const fetchProducts = (page) =>
+  api.get(`products?page=${page}&limit=10`);

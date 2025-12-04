@@ -20,10 +20,10 @@ function App() {
             path="/"
             element={
               <motion.div
-                initial={{ opacity: 0, x: 80 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -80 }}
-                transition={{ duration: 0.4 }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{ duration: 0.5 }}
               >
                 <ProductsManagement />
               </motion.div>
@@ -33,10 +33,9 @@ function App() {
             path="/login"
             element={
               <motion.div
-                initial={{ opacity: 0, x: 800, rotateY: 360 }}
-                animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                exit={{ opacity: 0, x: -800, rotateY: 360 }}
-                transition={{ duration: 0.4 }}
+                initial={{ opacity: 0, x: -300 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 300 }}
               >
                 <SignIn />
               </motion.div>
@@ -46,10 +45,9 @@ function App() {
             path="/register"
             element={
               <motion.div
-                initial={{ opacity: 0, x: 800, rotateY: 360 }}
-                animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                exit={{ opacity: 0, x: -800, rotateY: 360 }}
-                transition={{ duration: 0.4 }}
+                initial={{ opacity: 0, x: -300 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 300 }}
               >
                 <SignUp />
               </motion.div>
