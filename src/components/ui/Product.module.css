@@ -1,0 +1,26 @@
+.container {
+  @apply h-[53px] border-[#f2f2f2] border-b-[1px];
+}
+.container td:first-child {
+  padding-right: 60px;
+  display: flex;
+  align-items: center;
+  margin-top: 14px;
+}
+.container td button {
+  margin-right: 10px;
+}
+.container input[type="checkbox"] {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #282828;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-left: 5px;
+}
+.container input[type="checkbox"]:checked {
+  content: "5";
+  background-color: #f43f5e;
+  border-radius: 5px;
+}

@@ -32,6 +32,9 @@ const productsSlice = createSlice({
         state.selected.push(id);
       }
     },
+    clearSelect: (state) => {
+      state.selected = [];
+    },
     deleteSelected: (state) => {
       state.products = state.products.filter(
         (item) => !state.selected.includes(item.id)
@@ -47,6 +50,7 @@ export const {
   updateProduct,
   deleteProduct,
   toggleSelect,
+  clearSelect,
   deleteSelected,
 } = productsSlice.actions;
 export const selectProducts = (store) => store.products.products;

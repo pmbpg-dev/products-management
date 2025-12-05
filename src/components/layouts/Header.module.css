@@ -10,3 +10,31 @@
   /* margin: 28px; */
   border-radius: 16px;
 }
+.search {
+  @apply w-2/4 h-full flex items-center;
+}
+.search input {
+  @apply w-1/3 h-1/2 mr-[10px] p-[5px] outline-0;
+}
+.info {
+  @apply flex items-center h-full relative w-auto;
+}
+.info img {
+  @apply w-[46px] border rounded-full p-[5px] ml-[5px];
+}
+.info div {
+  @apply w-[120px] flex flex-col justify-start;
+}
+.info span {
+  color: #282828;
+}
+.logout {
+  bottom: -40px;
+  width: 500px;
+  border: 1px solid black;
+  position: absolute;
+  height: 60px;
+}
+.logout button {
+  @apply bg-[#f54f6c];
+}

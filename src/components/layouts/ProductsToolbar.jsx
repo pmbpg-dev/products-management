@@ -1,27 +1,57 @@
 import styles from "./ProductsToolbar.module.css";
 import settingSvg from "../../assets/setting.svg";
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  hideBulkDelete,
+  selectBulkDelete,
+  showBulkDelete,
+} from "../../feature/uiSlice";
 import Confirm from "../modules/Confirm";
-import { AnimatePresence } from "motion/react";
+import { clearSelect } from "../../feature/productsSlice";
 
 function ProductsToolbar() {
-  const [isShow, setIsShow] = useState(false);
+  const [isShowModule, setIsShowModule] = useState(false);
+  const isDelete = useSelector(selectBulkDelete);
+  const dispatch = useDispatch();
+  const showHandler = () => {
+    if (isDelete) {
+      dispatch(clearSelect());
+      dispatch(hideBulkDelete());
+    } else {
+      dispatch(showBulkDelete());
+    }
+  };
+
   return (
-    <div className="flex justify-between items-center w-full h-[60px] mt-[30px] mb-[10px]">
+    <div className={styles.container}>
       <div className="flex">
         <img src={settingSvg} alt="setting" className="ml-[10px]" />
-        <p>مدیریت کالا</p>
+        <p className=" text-2xl">مدیریت کالا</p>
       </div>
       <div>
-        <button
-          onClick={() => setIsShow(true)}
-          className="bg-[#55A3F0] text-[#fff] p-[10px] rounded-[10px]"
-        >
-          افزودن محصول
+        <AnimatePresence>
+          {" "}
+          {isDelete && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              onClick={() => setIsShowModule(true)}
+              className={styles.delete}
+            >
+              حذف
+            </motion.button>
+          )}
+        </AnimatePresence>
+        <button onClick={showHandler} className={styles.select}>
+          {isDelete ? "لغو" : "انتخاب"}
         </button>
+        <button className={styles.adding}>افزودن محصول</button>
       </div>
       <AnimatePresence>
-        {isShow ? <Confirm setIsShow={setIsShow} key="box" /> : null}
+        {isShowModule && <Confirm setIsShow={setIsShowModule} />}
       </AnimatePresence>
     </div>
   );

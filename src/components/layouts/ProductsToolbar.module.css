@@ -1,0 +1,15 @@
+.container {
+  @apply flex justify-between items-center w-full h-[60px] mt-[30px] mb-[10px];
+}
+.adding {
+  @apply bg-[#55A3F0] text-[#fff] p-[10px] rounded-[10px];
+}
+.select {
+  @apply w-[100px] bg-[#2aab59] text-[#fff] p-[10px] rounded-[10px];
+}
+.delete {
+  @apply w-[100px] bg-[#f43f5e] text-[#fff] p-[10px] rounded-[10px];
+}
+.container button {
+  margin-right: 5px;
+}

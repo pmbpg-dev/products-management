@@ -6,27 +6,30 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectProducts, setProducts } from "../feature/productsSlice";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../services/config";
+import { toast } from "sonner";
 
 function ProductsManagement() {
-  const [products, setProducts] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const [page, setPage] = useState(1);
   const store = useSelector(selectProducts);
   const dispatch = useDispatch();
 
-  const data = useQuery({
+  const { data } = useQuery({
     queryKey: ["products", page],
-    queryFn: () => fetchProducts(page).then((res) => res),
-    onSuccess: (dtat) => {
-      dispatch();
-    },
+    queryFn: async () => await fetchProducts(page).then((res) => res),
   });
+  useEffect(() => {
+    if (data) {
+      dispatch(setProducts(data.data.data));
+      setFiltered(data.data.data);
+    }
+  }, [data]);
 
-  useEffect(() => {}, []);
   return (
     <div className=" flex flex-col items-center w-full p-8">
       <Header />
       <ProductsToolbar />
-      <Products />
+      <Products filtered={filtered} />
     </div>
   );
 }

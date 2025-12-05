@@ -5,3 +5,24 @@
   border: 1px solid #e4e4e4;
   border-radius: 30px;
 }
+.container table {
+  width: 100%;
+
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+  text-align: right;
+  font-weight: 400;
+}
+.container table thead {
+  background-color: #f2f2f2;
+  height: 70px;
+  border-radius: 20px;
+  width: 100%;
+}
+.container table tbody {
+  color: #282828;
+}
+
+.container thead th:first-child {
+  padding-right: 60px;
+}

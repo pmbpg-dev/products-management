@@ -10,6 +10,8 @@ import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import Loader from "../components/Loader";
+import { useDispatch } from "react-redux";
+import { addUser } from "../feature/uiSlice";
 
 // ====================object for sign in ===================
 const loginObject = {
@@ -19,7 +21,7 @@ const loginObject = {
 
 function SignIn() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   // =================use Effect======================
   useEffect(() => {
     const isToken = Cookies.get("token");
@@ -41,6 +43,8 @@ function SignIn() {
     },
   });
   const submitHandler = (value) => {
+    dispatch(addUser(value.username));
+    localStorage.setItem("name", value.username);
     mutate(value);
   };
 
