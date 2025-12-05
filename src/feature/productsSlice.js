@@ -54,5 +54,6 @@ export const {
   deleteSelected,
 } = productsSlice.actions;
 export const selectProducts = (store) => store.products.products;
+export const selectProductsDelete = (store) => store.products.selected;
 
 export default productsSlice.reducer;

@@ -9,18 +9,29 @@ import {
   showBulkDelete,
 } from "../../feature/uiSlice";
 import Confirm from "../modules/Confirm";
-import { clearSelect } from "../../feature/productsSlice";
+import { clearSelect, selectProductsDelete } from "../../feature/productsSlice";
+import { toast } from "sonner";
 
 function ProductsToolbar() {
+  const selected = useSelector(selectProductsDelete);
   const [isShowModule, setIsShowModule] = useState(false);
   const isDelete = useSelector(selectBulkDelete);
   const dispatch = useDispatch();
+  // ===========events====================
   const showHandler = () => {
     if (isDelete) {
       dispatch(clearSelect());
       dispatch(hideBulkDelete());
     } else {
       dispatch(showBulkDelete());
+    }
+  };
+
+  const showConfirmHandler = () => {
+    if (selected.length) {
+      setIsShowModule(true);
+    } else {
+      toast.error("کاربری انتخاب نشده است!");
     }
   };
 
@@ -38,7 +49,7 @@ function ProductsToolbar() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
-              onClick={() => setIsShowModule(true)}
+              onClick={showConfirmHandler}
               className={styles.delete}
             >
               حذف
