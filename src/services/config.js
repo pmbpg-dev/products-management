@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 
 const api = axios.create({ baseURL: "http://localhost:3000/" });
 export default api;
+// ===============interceptors==================
 api.interceptors.request.use(
   (req) => {
     const token = Cookies.get("token");
@@ -16,12 +17,15 @@ api.interceptors.request.use(
   }
 );
 
-export const fetchLogin = async (object) =>
-  await api.post("auth/login", object);
-export const fetchRegister = async (object) =>
-  await api.post("auth/register", object);
+export const fetchLogin = (data) => api.post("auth/login", data);
+
+export const fetchRegister = (data) => api.post("auth/register", data);
 
 export const fetchProducts = (page) =>
   api.get(`products?page=${page}&limit=10`);
 
 export const deleteProducts = (id) => api.delete(`products/${id}`);
+
+export const postProduct = (data) => api.post("products", data);
+
+export const editProduct = (data, id) => api.put(`products/${id}`, data);

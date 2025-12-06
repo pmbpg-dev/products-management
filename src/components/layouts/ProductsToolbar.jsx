@@ -11,10 +11,19 @@ import {
 import Confirm from "../modules/Confirm";
 import { clearSelect, selectProductsDelete } from "../../feature/productsSlice";
 import { toast } from "sonner";
+import AddEditProducts from "../modules/Add&EditProducts";
+
+const data = {
+  name: "",
+  price: 0,
+  quantity: 0,
+};
 
 function ProductsToolbar() {
   const selected = useSelector(selectProductsDelete);
   const [isShowModule, setIsShowModule] = useState(false);
+  const [isShowForm, setIsShowForm] = useState(false);
+
   const isDelete = useSelector(selectBulkDelete);
   const dispatch = useDispatch();
   // ===========events====================
@@ -59,10 +68,19 @@ function ProductsToolbar() {
         <button onClick={showHandler} className={styles.select}>
           {isDelete ? "لغو" : "انتخاب"}
         </button>
-        <button className={styles.adding}>افزودن محصول</button>
+        <button className={styles.adding} onClick={() => setIsShowForm(true)}>
+          افزودن محصول
+        </button>
       </div>
       <AnimatePresence>
         {isShowModule && <Confirm setIsShow={setIsShowModule} />}
+        {isShowForm && (
+          <AddEditProducts
+            mode={"add"}
+            data={data}
+            setIsShowForm={setIsShowForm}
+          />
+        )}
       </AnimatePresence>
     </div>
   );
