@@ -32,10 +32,10 @@ function Product({ p }) {
         <button onClick={() => setIsDelete(true)}>
           <img src={trash} alt="edit" />
         </button>
+        <AnimatePresence>
+          {isDelete ? <Confirm setIsShow={setIsDelete} key="box" /> : null}
+        </AnimatePresence>
       </td>
-      <AnimatePresence>
-        {isDelete ? <Confirm setIsShow={setIsDelete} key="box" /> : null}
-      </AnimatePresence>
     </tr>
   );
 }

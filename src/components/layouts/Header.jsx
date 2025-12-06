@@ -1,21 +1,37 @@
 import styles from "./Header.module.css";
 import search from "../../assets/search.png";
 import person from "../../assets/person.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { addUser, selectUserName } from "../../feature/uiSlice";
+
 import { useState } from "react";
+import { useParams, useSearchParams } from "react-router";
 
 function Header() {
-  const [isLogout, seIsLogout] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialText = searchParams.get("search") || "";
+  const [text, setText] = useState(initialText);
+  // const [isLogout, seIsLogout] = useState(false);
   const name = localStorage.getItem("name");
+
+  const searchHandler = () => {
+    if (!text.trim()) {
+      setSearchParams({});
+    } else {
+      setSearchParams({ search: text });
+    }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.search}>
-        <button>
+        <button onClick={searchHandler}>
           <img src={search} alt="search" />
         </button>
-        <input type="text" placeholder="جستجو کالا" />
+        <input
+          type="text"
+          placeholder="جستجو کالا"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
       </div>
       <div className={styles.info}>
         <img src={person} alt="person" />

@@ -6,24 +6,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectProducts, setProducts } from "../feature/productsSlice";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../services/config";
-import { toast } from "sonner";
+import { useSearchParams } from "react-router";
 
 function ProductsManagement() {
-  const [filtered, setFiltered] = useState([]);
   const [page, setPage] = useState(1);
-  const store = useSelector(selectProducts);
+  const products = useSelector(selectProducts);
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+
+  const search = searchParams.get("search")?.toLowerCase() || "";
 
   const { data } = useQuery({
     queryKey: ["products", page],
     queryFn: async () => await fetchProducts(page).then((res) => res),
   });
   useEffect(() => {
-    if (data) {
+    if (data?.data?.data) {
       dispatch(setProducts(data.data.data));
-      setFiltered(data.data.data);
     }
-  }, [data]);
+  }, [data, dispatch]);
+
+  const filtered = products.filter((item) =>
+    item.name.toLowerCase().includes(search)
+  );
 
   return (
     <div className=" flex flex-col items-center w-full p-8">
