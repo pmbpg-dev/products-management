@@ -4,7 +4,7 @@ import ProductsToolbar from "../components/layouts/ProductsToolbar";
 import Products from "../components/layouts/Products";
 import { useSelector, useDispatch } from "react-redux";
 import { selectProducts, setProducts } from "../feature/productsSlice";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchProducts } from "../services/config";
 import { useSearchParams } from "react-router";
 
@@ -13,7 +13,6 @@ function ProductsManagement() {
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-
   const search = searchParams.get("search")?.toLowerCase() || "";
 
   const { data } = useQuery({

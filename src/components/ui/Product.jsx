@@ -7,14 +7,39 @@ import Confirm from "../modules/Confirm";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBulkDelete } from "../../feature/uiSlice";
 import { toggleSelect } from "../../feature/productsSlice";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteProducts } from "../../services/config";
+import { toast } from "sonner";
+
 function Product({ p }) {
+  // ==============values ========================
   const [isDelete, setIsDelete] = useState(false);
   const store = useSelector(selectBulkDelete);
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
 
+  // =============react query===================
+  const { mutate } = useMutation({
+    mutationKey: ["delete"],
+    mutationFn: deleteProducts,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      toast.success("حذف با موفقیت انجام شد.");
+      setIsDelete(false);
+    },
+    onError: () => {
+      toast.error("در حذف مشکلی پیش آمد دوباره امتحان کنید!");
+    },
+  });
+
+  // =================events=====================
   const changeHandler = () => {
     dispatch(toggleSelect(p.id));
   };
+  const deleteHandler = () => {
+    mutate(p.id);
+  };
+  // =================jsx====================
   return (
     <tr className={styles.container}>
       <td>
@@ -33,7 +58,13 @@ function Product({ p }) {
           <img src={trash} alt="edit" />
         </button>
         <AnimatePresence>
-          {isDelete ? <Confirm setIsShow={setIsDelete} key="box" /> : null}
+          {isDelete ? (
+            <Confirm
+              setIsShow={setIsDelete}
+              deleteHandler={deleteHandler}
+              key="box"
+            />
+          ) : null}
         </AnimatePresence>
       </td>
     </tr>

@@ -2,7 +2,7 @@ import closePng from "../../assets/Close.png";
 import { motion } from "motion/react";
 import styles from "./Confirm.module.css";
 
-function Confirm({ setIsShow }) {
+function Confirm({ setIsShow, deleteHandler }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -19,7 +19,9 @@ function Confirm({ setIsShow }) {
         <img src={closePng} alt="close" />
         <p>آیا از حذف این محصول مطمئنید؟</p>
         <div>
-          <button className={styles.delete}>حذف</button>
+          <button className={styles.delete} onClick={deleteHandler}>
+            حذف
+          </button>
           <button className={styles.cancel} onClick={() => setIsShow(false)}>
             لغو
           </button>
