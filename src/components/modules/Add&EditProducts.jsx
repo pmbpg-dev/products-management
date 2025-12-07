@@ -3,7 +3,7 @@ import FormComponent from "../Formik";
 
 import { ErrorMessage, Field } from "formik";
 import { addEditSchema } from "../../schema/addEditSchema";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { editProduct, postProduct } from "../../services/config";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
@@ -12,11 +12,13 @@ import { motion } from "motion/react";
 import Loader from "../Loader";
 
 function AddEditProducts({ mode, data, setIsShowForm }) {
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationKey: mode === "add" ? ["addProduct"] : ["editProduct"],
     mutationFn: mode === "add" ? postProduct : editProduct,
     onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
       mode === "add"
         ? dispatch(addProduct(variables))
         : dispatch(updateProduct(variables));
@@ -82,7 +84,9 @@ function AddEditProducts({ mode, data, setIsShowForm }) {
                 "ثبت اطلاعات جدید"
               )}
             </button>
-            <button onClick={() => setIsShowForm(false)}>انصراف</button>
+            <button type="button" onClick={() => setIsShowForm(false)}>
+              انصراف
+            </button>
           </div>
         </FormComponent>
       </motion.div>

@@ -2,7 +2,6 @@ import Product from "../ui/Product";
 import styles from "./Products.module.css";
 
 function Products({ filtered }) {
-  console.log(filtered);
   return (
     <div className={styles.container}>
       <table>

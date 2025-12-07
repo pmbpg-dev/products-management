@@ -26,6 +26,7 @@ function ProductsToolbar() {
 
   const isDelete = useSelector(selectBulkDelete);
   const dispatch = useDispatch();
+
   // ===========events====================
   const showHandler = () => {
     if (isDelete) {
@@ -40,7 +41,7 @@ function ProductsToolbar() {
     if (selected.length) {
       setIsShowModule(true);
     } else {
-      toast.error("کاربری انتخاب نشده است!");
+      toast.error("محصولی انتخاب نشده است!");
     }
   };
 

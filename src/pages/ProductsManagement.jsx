@@ -4,24 +4,32 @@ import ProductsToolbar from "../components/layouts/ProductsToolbar";
 import Products from "../components/layouts/Products";
 import { useSelector, useDispatch } from "react-redux";
 import { selectProducts, setProducts } from "../feature/productsSlice";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import Cookies from "js-cookie";
 import { fetchProducts } from "../services/config";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
+import Pagination from "../components/layouts/Pagination";
 
 function ProductsManagement() {
-  const [page, setPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search")?.toLowerCase() || "";
 
   const { data } = useQuery({
-    queryKey: ["products", page],
-    queryFn: async () => await fetchProducts(page).then((res) => res),
+    queryKey: ["products", currentPage],
+    queryFn: async () => await fetchProducts(currentPage).then((res) => res),
   });
   useEffect(() => {
+    const isToken = Cookies.get("token");
+    if (!isToken) navigate("/login");
     if (data?.data?.data) {
+      console.log(data.data.totalPages);
       dispatch(setProducts(data.data.data));
+      setTotalPage(data.data.totalPages);
     }
   }, [data, dispatch]);
 
@@ -34,6 +42,11 @@ function ProductsManagement() {
       <Header />
       <ProductsToolbar />
       <Products filtered={filtered} />
+      <Pagination
+        totalPage={totalPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 }

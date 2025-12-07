@@ -10,10 +10,12 @@ import { toggleSelect } from "../../feature/productsSlice";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteProducts } from "../../services/config";
 import { toast } from "sonner";
+import AddEditProducts from "../modules/Add&EditProducts";
 
 function Product({ p }) {
   // ==============values ========================
   const [isDelete, setIsDelete] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const store = useSelector(selectBulkDelete);
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
@@ -51,11 +53,11 @@ function Product({ p }) {
       <td>{p.id}</td>
       <td>
         {" "}
-        <button>
+        <button onClick={() => setIsEditing(true)}>
           <img src={edit} alt="edit" />
         </button>
         <button onClick={() => setIsDelete(true)}>
-          <img src={trash} alt="edit" />
+          <img src={trash} alt="trash" />
         </button>
         <AnimatePresence>
           {isDelete ? (
@@ -65,6 +67,13 @@ function Product({ p }) {
               key="box"
             />
           ) : null}
+          {isEditing && (
+            <AddEditProducts
+              mode={"edit"}
+              data={p}
+              setIsShowForm={setIsEditing}
+            />
+          )}
         </AnimatePresence>
       </td>
     </tr>

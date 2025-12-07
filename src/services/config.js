@@ -28,4 +28,6 @@ export const deleteProducts = (id) => api.delete(`products/${id}`);
 
 export const postProduct = (data) => api.post("products", data);
 
-export const editProduct = (data, id) => api.put(`products/${id}`, data);
+export const editProduct = (data) => {
+  api.put(`products/${data.id}`, data);
+};
