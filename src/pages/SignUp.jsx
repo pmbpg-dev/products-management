@@ -37,7 +37,15 @@ function SignUp() {
       });
     },
     onError: (err) => {
-      toast.error("این حساب کاربری موجود است!");
+      if (err.code === "ERR_NETWORK") {
+        toast.error("اتصال اینترنت یا سرور برقرار نیست!");
+        return;
+      }
+      if (err.response?.status === 400) {
+        toast.error("این حساب کاربری موجود است!");
+        return;
+      }
+      toast.error("مشکلی رخ داده است!");
     },
   });
   // ----------------------------------------------------

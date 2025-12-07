@@ -41,7 +41,11 @@ function ProductsToolbar() {
       toast.success("محصولات با موفقیت حذف شدند.");
       setIsShowModule(false);
     },
-    onError: () => {
+    onError: (err) => {
+      if (err.code === "ERR_NETWORK") {
+        toast.error("اتصال اینترنت یا سرور برقرار نیست!");
+        return;
+      }
       toast.error("در حذف محصولات مشکلی پیش آمد!");
     },
   });
@@ -70,7 +74,7 @@ function ProductsToolbar() {
     <div className={styles.container}>
       <div className="flex">
         <img src={settingSvg} alt="setting" className="ml-[10px]" />
-        <p className=" text-2xl">مدیریت کالا</p>
+        <p className=" text-[16px] md:text-2xl">مدیریت کالا</p>
       </div>
       <div>
         <AnimatePresence>
@@ -99,6 +103,7 @@ function ProductsToolbar() {
           <Confirm
             setIsShow={setIsShowModule}
             deleteHandler={bulkDeleteHandler}
+            string="محصولات"
           />
         )}
         {isShowForm && (

@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 .box {
   @apply bg-[#fff] w-[460px] h-[448px] p-[25px] rounded-[30px] flex flex-col justify-between items-center;
@@ -56,6 +57,14 @@
 }
 .buttons button:last-child {
   @apply bg-[#DFDFDF];
+}
+@media (max-width: 600px) {
+  .box {
+    width: 95%;
+  }
+  .buttons button {
+    width: 130px;
+  }
 }
 /* .box button {
   background-color: #3a8bed;

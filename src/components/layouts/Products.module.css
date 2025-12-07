@@ -18,7 +18,6 @@
 }
 .container table {
   width: 100%;
-
   border-radius: 30px 30px 0 0;
   overflow: hidden;
   text-align: right;
@@ -53,4 +52,27 @@
   color: #fff;
   border-radius: 25px;
   margin-top: 20px;
+}
+.id {
+  display: table-cell;
+}
+.empty {
+  display: none;
+}
+@media (max-width: 600px) {
+  .container table thead {
+    font-size: 12px;
+  }
+  .container table tbody {
+    font-size: 12px;
+  }
+  .id {
+    display: none;
+  }
+  .empty {
+    display: table-cell;
+  }
+  .container thead th:first-child {
+    padding-right: 10px;
+  }
 }

@@ -29,7 +29,11 @@ function Product({ p }) {
       toast.success("حذف با موفقیت انجام شد.");
       setIsDelete(false);
     },
-    onError: () => {
+    onError: (err) => {
+      if (err.code === "ERR_NETWORK") {
+        toast.error("اتصال اینترنت یا سرور برقرار نیست!");
+        return;
+      }
       toast.error("در حذف مشکلی پیش آمد دوباره امتحان کنید!");
     },
   });
@@ -48,9 +52,15 @@ function Product({ p }) {
         {store && <input type="checkbox" onChange={changeHandler} />}
         {p.name}
       </td>
-      <td>{p.quantity}</td>
-      <td>{p.price} هزار تومان</td>
-      <td>{p.id}</td>
+      <td>
+        {!p.quantity ? (
+          <p className={styles.end}>ناموجود</p>
+        ) : (
+          <p>{p.quantity}</p>
+        )}
+      </td>
+      <td>{p.price.toLocaleString()} هزار تومان</td>
+      <td className={styles.id}>{p.id}</td>
       <td>
         {" "}
         <button onClick={() => setIsEditing(true)}>
@@ -64,6 +74,7 @@ function Product({ p }) {
             <Confirm
               setIsShow={setIsDelete}
               deleteHandler={deleteHandler}
+              string="محصول"
               key="box"
             />
           )}

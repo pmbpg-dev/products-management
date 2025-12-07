@@ -11,8 +11,8 @@ import { useNavigate, useSearchParams } from "react-router";
 import Pagination from "../components/layouts/Pagination";
 
 function ProductsManagement() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ function ProductsManagement() {
     const isToken = Cookies.get("token");
     if (!isToken) navigate("/login");
     if (data?.data?.data) {
-      console.log(data);
       dispatch(setProducts(data.data.data));
       setTotalPage(data.data.totalPages);
     }
@@ -38,7 +37,7 @@ function ProductsManagement() {
   );
 
   return (
-    <div className=" flex flex-col items-center w-full p-8">
+    <div className=" flex flex-col items-center w-full p-2 md:p-8">
       <Header />
       <ProductsToolbar />
       <Products filtered={filtered} />

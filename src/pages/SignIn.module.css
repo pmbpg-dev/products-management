@@ -51,3 +51,12 @@
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 600px) {
+  .container {
+    background-color: #fff;
+  }
+  .formBox {
+    border: none;
+    width: 100%;
+  }
+}

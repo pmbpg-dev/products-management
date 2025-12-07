@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 8px 80px;
   border: 1px solid #e4e4e4;
   /* margin: 28px; */
   border-radius: 16px;
@@ -20,7 +20,7 @@
   @apply flex items-center h-full relative w-auto;
 }
 .info img {
-  @apply w-[46px] border rounded-full p-[5px] ml-[5px] cursor-pointer;
+  @apply h-full border rounded-full p-[5px] ml-[5px] cursor-pointer;
 }
 .details {
   @apply w-[120px] flex flex-col justify-start;
@@ -31,4 +31,29 @@
 
 .logout button {
   @apply bg-[#f54f6c];
+}
+@media (max-width: 600px) {
+  .container {
+    height: 40px;
+    border-radius: 10px;
+    padding: 4px 8px;
+  }
+  .details {
+    width: 80px;
+    height: 100%;
+    align-items: start;
+  }
+  .details p {
+    font-size: 14px;
+    height: 50%;
+  }
+  .details span {
+    font-size: 10px;
+  }
+  .search input {
+    font-size: 12px;
+    width: 60%;
+  }
+  .search {
+  }
 }

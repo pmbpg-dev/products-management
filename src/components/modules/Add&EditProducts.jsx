@@ -28,8 +28,11 @@ function AddEditProducts({ mode, data, setIsShowForm }) {
       );
       setIsShowForm(false);
     },
-    onError: (err, variables) => {
-      console.log(err, variables);
+    onError: (err) => {
+      if (err.code === "ERR_NETWORK") {
+        toast.error("اتصال اینترنت یا سرور برقرار نیست!");
+        return;
+      }
       toast.error(
         `در ${mode === "add" ? "ایجاد" : "ویرایش"} محصول مشکلی پیش آمد!`
       );

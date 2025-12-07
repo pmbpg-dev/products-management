@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 }
 .box {
   @apply bg-[#fff] w-[472px] h-[338px] rounded-[30px] flex flex-col justify-evenly items-center;
@@ -22,4 +23,9 @@
 
 .cancel {
   @apply bg-[#DFDFDF] w-[160px] h-[41px] p-[10px] rounded-[10px];
+}
+@media (max-width: 600px) {
+  .box {
+    width: 95%;
+  }
 }

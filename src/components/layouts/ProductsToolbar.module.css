@@ -13,3 +13,20 @@
 .container button {
   margin-right: 5px;
 }
+@media (max-width: 600px) {
+  .adding {
+    padding: 5px 4px;
+    font-size: 14px;
+  }
+  .select {
+    width: 60px;
+    padding: 5px 1px;
+    font-size: 14px;
+  }
+  .delete {
+    width: 60px;
+
+    padding: 5px 4px;
+    font-size: 14px;
+  }
+}

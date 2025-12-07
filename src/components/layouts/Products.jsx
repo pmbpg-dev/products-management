@@ -39,7 +39,8 @@ function Products({ filtered }) {
             <th>نام کالا</th>
             <th>موجودی</th>
             <th>قیمت</th>
-            <th>شناسه کالا</th>
+            <th className={styles.id}>شناسه کالا</th>
+            <th className={styles.empty}></th>
             <th></th>
           </tr>
         </thead>

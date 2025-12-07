@@ -39,7 +39,15 @@ function SignIn() {
       });
     },
     onError: (err) => {
-      toast.error("کاربر با این مشخصات وجود ندارد!");
+      if (err.code === "ERR_NETWORK") {
+        toast.error("اتصال اینترنت یا سرور برقرار نیست!");
+        return;
+      }
+      if (err.response?.status === 400) {
+        toast.error("نام کاربری یا رمز اشتباه است!");
+        return;
+      }
+      toast.error("مشکلی رخ داده است!");
     },
   });
   const submitHandler = (value) => {
