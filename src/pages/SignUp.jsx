@@ -24,6 +24,7 @@ function SignUp() {
   // =================use Effect======================
   useEffect(() => {
     const isToken = Cookies.get("token");
+    document.title = "register";
     if (isToken) navigate("/");
   }, []);
   //=====================submit event====================

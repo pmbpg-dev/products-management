@@ -25,6 +25,7 @@ function SignIn() {
   // =================use Effect======================
   useEffect(() => {
     const isToken = Cookies.get("token");
+    document.title = "login";
     if (isToken) navigate("/");
   }, []);
   //=====================submit event====================

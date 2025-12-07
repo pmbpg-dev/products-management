@@ -24,6 +24,7 @@ function ProductsManagement() {
     queryFn: async () => await fetchProducts(currentPage).then((res) => res),
   });
   useEffect(() => {
+    document.title = "Products Management";
     const isToken = Cookies.get("token");
     if (!isToken) navigate("/login");
     if (data?.data?.data) {
