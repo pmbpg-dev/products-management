@@ -5,38 +5,22 @@ The app includes authentication, pagination, search, CRUD operations, token hand
 
 ---
 
-## 🚀 Tech Stack
-
-- ✅React.js
-- ✅React Router
-- ✅Redux Toolkit
-- ✅React Query (TanStack)
-- ✅Axios (with interceptors)
-- ✅Formik + Yup
-- ✅TailwindCSS / CSS Modules
-- ✅js-cookie
-- ✅Sonner (Toast Notifications)
-- ✅responsive
----
 
 ## 📌 Features
 
-- User authentication (Login/Register)
-- Token stored in Cookies
-- Auto redirect if token is missing
-- Fetch products with pagination
-- Search products using query string (`?search=value`)
-- Add, edit, delete products
-- Delete multiple selected products
-- Loading state while fetching data
-- Price formatting with thousand separators
-- React Query caching + optimistic update-ready structure
-
+- ✅User authentication (Login/Register)
+- ✅Token stored in Cookies
+- ✅Auto redirect if token is missing
+- ✅Fetch products with pagination
+- ✅Search products using query string (`?search=value`)
+- ✅Add, edit, delete products
+- ✅Delete multiple selected products
+- ✅React Query caching + optimistic update-ready structure
+- ✅responsive
 ---
 
 
-___
-## Technologies Used
+## 🚀 Technologies Used
 
 - **React** – Functional components & hooks  
 - **motion** – Element animations  
