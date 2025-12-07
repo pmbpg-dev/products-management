@@ -23,6 +23,7 @@ const productsSlice = createSlice({
     },
     deleteProduct: (state, action) => {
       state.products = state.products.filter((p) => p.id !== action.payload.id);
+      console.log(state.products);
     },
     toggleSelect: (state, action) => {
       const id = action.payload;

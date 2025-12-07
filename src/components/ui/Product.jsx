@@ -60,13 +60,13 @@ function Product({ p }) {
           <img src={trash} alt="trash" />
         </button>
         <AnimatePresence>
-          {isDelete ? (
+          {isDelete && (
             <Confirm
               setIsShow={setIsDelete}
               deleteHandler={deleteHandler}
               key="box"
             />
-          ) : null}
+          )}
           {isEditing && (
             <AddEditProducts
               mode={"edit"}

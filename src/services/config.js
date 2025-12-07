@@ -21,8 +21,25 @@ export const fetchLogin = (data) => api.post("auth/login", data);
 
 export const fetchRegister = (data) => api.post("auth/register", data);
 
-export const fetchProducts = (page) =>
-  api.get(`products?page=${page}&limit=10`);
+export const fetchProducts = async (page) => {
+  try {
+    const res = await api.get(`products?page=${page}&limit=10`);
+    return res;
+  } catch (err) {
+    if (err.response?.status === 400) {
+      return {
+        data: {
+          totalProducts: 0,
+          page: 0,
+          limit: 0,
+          totalPages: 0,
+          data: [],
+        },
+      };
+    }
+    throw err;
+  }
+};
 
 export const deleteProducts = (id) => api.delete(`products/${id}`);
 

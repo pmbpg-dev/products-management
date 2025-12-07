@@ -14,7 +14,7 @@ function Logout({ seIsLogout }) {
       initial={{ opacity: 0, y: -80, scale: 0 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -80, scale: 0 }}
-      className=" p-[15px] w-[100px] h-[120px] bg-white flex items-end justify-center absolute bottom-[-110px] rounded shadow border border-[#e4e4e4]"
+      className=" p-[15px] w-[100px] h-[90px] bg-white flex items-end justify-center absolute right-[-30px] bottom-[-100px] rounded shadow border border-[#e4e4e4]"
     >
       <button
         onClick={logoutHandler}

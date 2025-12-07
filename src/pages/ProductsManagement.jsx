@@ -27,6 +27,7 @@ function ProductsManagement() {
     const isToken = Cookies.get("token");
     if (!isToken) navigate("/login");
     if (data?.data?.data) {
+      console.log(data);
       dispatch(setProducts(data.data.data));
       setTotalPage(data.data.totalPages);
     }
