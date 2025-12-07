@@ -9,9 +9,15 @@ import {
   showBulkDelete,
 } from "../../feature/uiSlice";
 import Confirm from "../modules/Confirm";
-import { clearSelect, selectProductsDelete } from "../../feature/productsSlice";
+import {
+  clearSelect,
+  deleteSelected,
+  selectProductsDelete,
+} from "../../feature/productsSlice";
 import { toast } from "sonner";
 import AddEditProducts from "../modules/Add&EditProducts";
+import { useMutation } from "@tanstack/react-query";
+import { bulkDeleteProducts } from "../../services/config";
 
 const data = {
   name: "",
@@ -26,6 +32,19 @@ function ProductsToolbar() {
 
   const isDelete = useSelector(selectBulkDelete);
   const dispatch = useDispatch();
+
+  const { mutate } = useMutation({
+    mutationKey: ["bulk_delete"],
+    mutationFn: bulkDeleteProducts,
+    onSuccess: () => {
+      dispatch(deleteSelected());
+      toast.success("محصولات با موفقیت حذف شدند.");
+      setIsShowModule(false);
+    },
+    onError: () => {
+      toast.error("در حذف محصولات مشکلی پیش آمد!");
+    },
+  });
 
   // ===========events====================
   const showHandler = () => {
@@ -44,7 +63,9 @@ function ProductsToolbar() {
       toast.error("محصولی انتخاب نشده است!");
     }
   };
-
+  const bulkDeleteHandler = () => {
+    mutate(selected);
+  };
   return (
     <div className={styles.container}>
       <div className="flex">
@@ -74,7 +95,12 @@ function ProductsToolbar() {
         </button>
       </div>
       <AnimatePresence>
-        {isShowModule && <Confirm setIsShow={setIsShowModule} />}
+        {isShowModule && (
+          <Confirm
+            setIsShow={setIsShowModule}
+            deleteHandler={bulkDeleteHandler}
+          />
+        )}
         {isShowForm && (
           <AddEditProducts
             mode={"add"}

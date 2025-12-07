@@ -31,3 +31,6 @@ export const postProduct = (data) => api.post("products", data);
 export const editProduct = (data) => {
   api.put(`products/${data.id}`, data);
 };
+export const bulkDeleteProducts = (ids) => {
+  api.delete("products", { data: { ids } });
+};

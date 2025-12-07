@@ -20,21 +20,15 @@
   @apply flex items-center h-full relative w-auto;
 }
 .info img {
-  @apply w-[46px] border rounded-full p-[5px] ml-[5px];
+  @apply w-[46px] border rounded-full p-[5px] ml-[5px] cursor-pointer;
 }
-.info div {
+.details {
   @apply w-[120px] flex flex-col justify-start;
 }
 .info span {
   color: #282828;
 }
-.logout {
-  bottom: -40px;
-  width: 500px;
-  border: 1px solid black;
-  position: absolute;
-  height: 60px;
-}
+
 .logout button {
   @apply bg-[#f54f6c];
 }

@@ -4,12 +4,14 @@ import person from "../../assets/person.svg";
 
 import { useState } from "react";
 import { useParams, useSearchParams } from "react-router";
+import Logout from "../ui/Logout";
+import { AnimatePresence } from "motion/react";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialText = searchParams.get("search") || "";
   const [text, setText] = useState(initialText);
-  // const [isLogout, seIsLogout] = useState(false);
+  const [isLogout, seIsLogout] = useState(false);
   const name = localStorage.getItem("name");
 
   const searchHandler = () => {
@@ -34,14 +36,14 @@ function Header() {
         />
       </div>
       <div className={styles.info}>
-        <img src={person} alt="person" />
-        <div>
+        <img onClick={() => seIsLogout(true)} src={person} alt="person" />
+        <div className={styles.details}>
           <p>{name}</p>
           <span className=" text-[14px]">مدیر</span>
         </div>
-        {/* <div className={styles.logout}>
-          <button>خروج از حساب</button>
-        </div> */}
+        <AnimatePresence>
+          {isLogout && <Logout seIsLogout={seIsLogout} />}
+        </AnimatePresence>
       </div>
     </div>
   );
