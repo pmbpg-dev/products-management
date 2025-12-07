@@ -7,16 +7,16 @@ The app includes authentication, pagination, search, CRUD operations, token hand
 
 ## 🚀 Tech Stack
 
-- React.js
-- React Router
-- Redux Toolkit
-- React Query (TanStack)
-- Axios (with interceptors)
-- Formik + Yup
-- TailwindCSS / CSS Modules
-- js-cookie
-- Sonner (Toast Notifications)
-
+- ✅React.js
+- ✅React Router
+- ✅Redux Toolkit
+- ✅React Query (TanStack)
+- ✅Axios (with interceptors)
+- ✅Formik + Yup
+- ✅TailwindCSS / CSS Modules
+- ✅js-cookie
+- ✅Sonner (Toast Notifications)
+- ✅responsive
 ---
 
 ## 📌 Features
