@@ -1,5 +1,5 @@
 import styles from "./Add&EditProducts.module.css";
-import FormComponent from "../Formik";
+import FormComponent from "../ui/Formik";
 
 import { ErrorMessage, Field } from "formik";
 import { addEditSchema } from "../../schema/addEditSchema";
@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { addProduct, updateProduct } from "../../feature/productsSlice";
 import { motion } from "motion/react";
-import Loader from "../Loader";
+import Loader from "../ui/Loader";
 
 function AddEditProducts({ mode, data, setIsShowForm }) {
   const queryClient = useQueryClient();

@@ -29,10 +29,10 @@ function ProductsToolbar() {
   const selected = useSelector(selectProductsDelete);
   const [isShowModule, setIsShowModule] = useState(false);
   const [isShowForm, setIsShowForm] = useState(false);
-
   const isDelete = useSelector(selectBulkDelete);
   const dispatch = useDispatch();
 
+  // ==========react query==========================
   const { mutate } = useMutation({
     mutationKey: ["bulk_delete"],
     mutationFn: bulkDeleteProducts,

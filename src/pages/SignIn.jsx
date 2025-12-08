@@ -1,5 +1,5 @@
 import { ErrorMessage, Field } from "formik";
-import FormComponent from "../components/Formik";
+import FormComponent from "../components/ui/Formik";
 import { loginSchema } from "../schema/loginSchema";
 import styles from "./SignIn.module.css";
 import boto from "../assets/Union.svg";
@@ -9,7 +9,7 @@ import { fetchLogin } from "../services/config";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import Loader from "../components/Loader";
+import Loader from "../components/ui/Loader";
 import { useDispatch } from "react-redux";
 import { addUser } from "../feature/uiSlice";
 

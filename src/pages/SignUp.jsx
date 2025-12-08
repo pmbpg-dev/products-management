@@ -1,6 +1,6 @@
 import styles from "./SignUp.module.css";
 import { ErrorMessage, Field } from "formik";
-import FormComponent from "../components/Formik";
+import FormComponent from "../components/ui/Formik";
 import { signUpSchema } from "../schema/signUpSchema";
 import boto from "../assets/Union.svg";
 import { Link, useNavigate } from "react-router";
