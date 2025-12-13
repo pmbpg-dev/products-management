@@ -34,10 +34,21 @@ The app includes authentication, pagination, search, CRUD operations, token hand
 - **Sonner** – Toast notifications  
 - **react-responsive-pagination** – Pagination component  
 - **js-cookie** – Cookie management (token storage)  
-- **react-router-dom** – SPA routing system  
+- **react-router-dom** – SPA routing system
 
 
+---
+## back-end Installation
 
+```git
+git clone https://github.com/pmbpg-dev/products-management-backend.git
+```
+```npm
+npm install
+npm start
+```
+
+---
 ## Installation
 
 1. install node_modules:
